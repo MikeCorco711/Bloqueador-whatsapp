@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloqueador de WhatsApp</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#25d366">
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('Service Worker registrado', reg))
+          .catch(err => console.error('Error al registrar SW', err));
+      });
+    }
+  </script>
+</head>
+<body>
+  <div class="card">
+    <h2>Bloqueador de WhatsApp</h2>
+    <p>Tiempo restante hoy: <strong id="timeLeft">--</strong> minutos</p>
+    <p>Monedas disponibles: <strong id="coins">--</strong></p>
+    <p><small>Último uso: <span id="lastUsed">---</span></small></p>
+
+    <button class="primary" onclick="startSession()">Usar WhatsApp</button>
+    <button class="secondary" onclick="buyCoins()">Comprar 5 monedas</button>
+
+    <div id="notification" class="notification" style="display:none;"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
